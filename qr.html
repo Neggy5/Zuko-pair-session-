@@ -4,83 +4,10 @@
             crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JUNIOR-MD QR SCANER</title>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&amp;display=swap" rel="stylesheet">
+    <title>ZUKO-MD QR SCANER</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700&display=swap" rel="stylesheet">
     <title>QR</title>
     <style>
-        .bg {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-size: 400% 400%;
-            animation: AnimateBG 25s ease infinite;
-        }
-
-        @keyframes AnimateBG {
-            0% {
-                background-position: 0% 50%
-            }
-
-            50% {
-                background-position: 100% 50%
-            }
-
-            100% {
-                background-position: 0% 50%
-            }
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: "Outfit";
-            background: linear-gradient(-45deg, #4a90e2, #3ac569, #9b59b6, #e74c3c);
-            background-size: 400% 400%;
-            animation: gradient 10s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        @keyframes gradient {
-            0% {
-                background-position: 0% 50%;
-            }
-
-            50% {
-                background-position: 100% 50%;
-            }
-
-            100% {
-                background-position: 0% 50%;
-            }
-        }
-
-        jsl.code {
-            overflow: hidden;
-            background: linear-gradient(-45deg, #f1c40f, #3498db, #2ecc71, #e74c3c);
-            background-size: 400% 400%;
-            animation: gradient 8s ease infinite;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-            font-family: 'Montserrat', sans-serif;
-            height: 110vh;
-            margin: 0px;
-
-        }
-
-        p.legend {
-            color: #fff;
-            font-size: 1em;
-            font-weight: 400;
-            padding: 0em 1.1em;
-            margin-top: 0.1em;
-        }
-
         * {
             margin: 0;
             padding: 0;
@@ -92,21 +19,57 @@
             --main-color: hsl(212, 45%, 89%);
             --principalText-color: hsl(218, 44%, 22%);
             --secondText-color: hsl(220, 15%, 55%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Outfit', 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(-45deg, #1e3c72, #2a5298, #3ac569, #9b59b6);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        @keyframes gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .bg {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
         }
 
         #content {
             display: flex;
             flex-direction: column;
-            width: 22rem;
+            width: 24rem;
             text-align: center;
-            background-color: #000000;
-            padding: 1rem;
-            border-radius: 14px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
         }
 
         #QR-content img {
-            border-radius: 10px;
-            width: 20rem;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 20rem;
+            margin: 0 auto;
         }
 
         #title-container {
@@ -114,33 +77,64 @@
             color: #fff;
             font-weight: 700;
             margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        #title-container h2 {
+            font-size: 1.8rem;
+            letter-spacing: 0.05em;
         }
 
         #description-container {
-            padding: 0 2.5rem 0 2.5rem;
-            color: #fff;
+            padding: 0 2.5rem;
+            color: #e0e0e0;
             margin-bottom: 2rem;
         }
 
-        #p-legend {
-            font-size: 1em;
+        p.legend {
+            font-size: 1.1em;
             font-weight: 400;
-            padding: 0em 1.1em;
-            margin-top: 0.1em;
+            color: #f0f0f0;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+            padding: 0 1.1em;
+            margin-top: 0.5em;
+            line-height: 1.4;
+        }
+
+        progress {
+            width: 100%;
+            height: 8px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        progress::-webkit-progress-bar {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
+        }
+
+        progress::-webkit-progress-value {
+            background: #3498db;
+            border-radius: 4px;
         }
 
         .reload-button {
             display: inline-block;
-            padding: 10px 20px;
-            background-color: #3498db; /* Blue color */
-            color: #fff; /* White text color */
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #3498db, #2ecc71);
+            color: #fff;
             text-decoration: none;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.03em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
         .reload-button:hover {
-            background-color: #2980b9; /* Darker blue color on hover */
+            background: linear-gradient(45deg, #2980b9, #27ae60);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
     </style>
     <script>
@@ -164,7 +158,7 @@
             <img id="qr-image" src="/server" alt="QR CODE">
         </div>
         <div id="title-container">
-            <h2 id="main">JUNIOR-MD QR</h2>
+            <h2 id="main">ZUKO-MD QR</h2>
             <p class="legend" id="legend">Scan The QR Code</p>
         </div>
         <div id="description-container">
@@ -175,4 +169,4 @@
     </div>
 </div>
 </body>
-</html>
+    </html>
